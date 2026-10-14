@@ -1,6 +1,14 @@
-def sum_of_digits(n):
-    if n == 0:
-        return 0
-    return (n % 10) + sum_of_digits(n // 10)
+def even_numbers():
+    num = 0
+    while True:
+        yield num
+        num += 2
 
-print(sum_of_digits(1234))  
+
+print("First 10 even numbers:")
+count = 0
+for even in even_numbers():
+    print(even)
+    count += 1
+    if count >= 10:
+        break

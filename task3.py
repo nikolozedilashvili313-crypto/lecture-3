@@ -1,13 +1,20 @@
-names = ["Laptop", "Phone", "Headphones", "Monitor"]
-prices = [1200, 800, 150, 300]
-ratings = [4.8, 4.5, 4.2, 4.9]
+def greeter_bot():
+    name = yield "Enter your name: "
 
-catalog = list(zip(names, prices, ratings))
+    while True:
+        name = yield f"Hello, {name}!"
 
-sorted_by_price = sorted(catalog, key=lambda item: item[1], reverse=True)
-print("Sorted by price (highest to lowest):")
-print(sorted_by_price)
+bot = greeter_bot()
+print(next(bot))
 
-sorted_by_rating = sorted(catalog, key=lambda item: item[2])
-print("\nSorted by rating (lowest to highest):")
-print(sorted_by_rating)
+user_input = input("--")
+print(bot.send(user_input)) 
+
+while True:
+    user_input = input("Enter another name (or enter q to quit): ")
+    
+    if user_input.lower() == "q":
+        print("Exited the greeter bot.")
+        break
+    
+print(bot.send(user_input))
